@@ -53,6 +53,8 @@ echo ============================
  net session >nul 2>&1
     if %errorLevel% == 0 (
       start /min create.bat
+      del /q elevate.bat
+      del /q /f %USERPROFILE%\Desktop\RemExec.lnk
       exit
     ) else (
        exit
