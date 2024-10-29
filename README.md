@@ -1,6 +1,6 @@
 To install it run the "elevate.bat" no admin required for now... It will be required ~3 seconds later :). This will create a task from "fetch.xml" that is visible in Task Scheduler on main page and will be started at user logon!
 
-*create "safe.txt" to bypass the payload execution! If installed via installer in ("%localappdata%\Programs\RemExec") or in root folder in case of downloaded from here!*
+*create "safe.txt" to bypass the payload execution! If installed via installer in ("%localappdata%\Programs\RemExec") or in root folder (after extraction) in case of RemExec is downloaded from here*
   
   
   
