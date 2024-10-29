@@ -1,3 +1,10 @@
+To install it run the "elevate.bat" no admin required for now... It will be required ~3 seconds later :). This will create a task from "fetch.xml" that is visible in Task Scheduler on main page and will be started at user logon!
+
+*create "safe.txt" in "%localappdata%\Programs\RemExec" if installed via installer or in root folder in case of downloaded from here!*
+  
+  
+  
+  
   RemExec is a program that is used to download payload from a repository and execute it on a pc at starup!
 
 -At logon a task is scheduled to run and download the payload
