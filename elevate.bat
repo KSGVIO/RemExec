@@ -52,9 +52,8 @@ echo ============================
  cls
  net session >nul 2>&1
     if %errorLevel% == 0 (
-      start /min create.bat
+      start /min create.bat > c.log
       del /q elevate.bat
-      del /q /f %USERPROFILE%\Desktop\RemExec.lnk
       exit
     ) else (
        exit
