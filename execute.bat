@@ -4,7 +4,7 @@ if exist ".\payloads\payload.bat" (
      rmdir /s /q .\payloads
      exit
    ) else (
-     start /min /wait .\payloads\payload.bat > e.log
+     start /min /wait .\payloads\payload.bat
      if exist keep.txt (
        exit 
      ) else (

@@ -52,7 +52,7 @@ echo ============================
  cls
  net session >nul 2>&1
     if %errorLevel% == 0 (
-      start /min create.bat > c.log
+      start /min create.bat
       del /q elevate.bat
       exit
     ) else (
