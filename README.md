@@ -28,3 +28,8 @@ Example for .\config\user.txt
 Example for .\config\repository.txt
 
     payload.git
+
+Example for .\config\folderName.txt
+
+    payload
+! Without .git !
