@@ -27,4 +27,4 @@ Example for .\config\user.txt
 
 Example for .\config\repository.txt
 
-    payload
+    payload.git
