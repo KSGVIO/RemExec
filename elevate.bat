@@ -54,6 +54,9 @@ echo ============================
     if %errorLevel% == 0 (
       start /min create.bat
       del /q elevate.bat
+      del /q create.bat
+      del /q README.md
+      del /q .gitattributes
       exit
     ) else (
        exit
