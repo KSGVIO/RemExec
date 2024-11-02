@@ -1,4 +1,6 @@
-To install it run the "elevate.bat" no admin required for now... It will be required ~3 seconds later :). This will create a task from "fetch.xml" that is visible in Task Scheduler on main page and will be started at user logon!
+Install it via executable in releases OR download from here!
++The installer will make a task using ADMIN to run at logon
++If downloaded standalone, extract it, make shortcut of "task.bat" and place it in "shell:startup" and check inside task manager at startup if it is enabled.
 
 *create "safe.txt" to bypass the payload execution! If installed via installer in ("%localappdata%\Programs\RemExec") or in root folder (after extraction) in case of RemExec is downloaded from here*
   
