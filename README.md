@@ -32,4 +32,4 @@ Example for .\config\repository.txt
 Example for .\config\folderName.txt
 
     payload
-! Without .git !
+! (The repository name Without .git) !
