@@ -52,9 +52,9 @@ echo ============================
  cls
  net session >nul 2>&1
     if %errorLevel% == 0 (
+      cd %localappdata%\Programs\RemExec
       start /min create.bat
       del /q elevate.bat
-      del /q create.bat
       del /q README.md
       del /q .gitattributes
       exit
