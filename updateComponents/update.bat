@@ -18,7 +18,7 @@ for /f "delims=" %%a in ('type RemExec\config\version.txt') do set carrying=%%a
 echo Installed version: "%installed%"
 echo Carrying version: "%carrying%"
 
-if %1=="--force" (
+if "%1"=="/F" (
    xcopy "RemExec\*" "..\." /s /e /y > nul
    rmdir /s /q "RemExec"
    cd "%localappdata%\Programs\RemExec"
