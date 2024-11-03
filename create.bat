@@ -8,6 +8,6 @@ if "%git%"=="C:\Program Files\Git\cmd\git.exe" (
 )
 
 :create
-schtasks /Create /TR "%localappdata%\Programs\RemExec\task.bat" /RU %USERNAME% /TN Fetch /SC ONLOGON /f
+schtasks /Create /TR "%localappdata%\Programs\RemExec\min.bat" /RU %USERNAME% /TN Fetch /SC ONLOGON /f
 schtasks /Run /TN "Fetch"
 exit
