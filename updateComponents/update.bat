@@ -10,6 +10,8 @@ echo Carrying version: "%carrying%"
 
 if "%installed%" GEQ "%carrying%" (
    echo %installed%  %carrying% a better/same version is installed
+   echo Cleaning downloaded files...
+   rmdir /s /q "RemExec"
 ) else (
    xcopy "RemExec\*" "..\." /s /e /y
    rmdir /s /q "RemExec"
