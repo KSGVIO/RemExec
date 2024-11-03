@@ -47,7 +47,7 @@ if "%1"=="--execute" (
 REM Update
 
 if "%1"=="--update" (
-   if "%1"=="auto" (
+   if "%2"=="auto" (
    call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
    call "%localappdata%\Programs\RemExec\updateComponents\update.bat"
    ) else (
