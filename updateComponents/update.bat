@@ -19,6 +19,8 @@ if "%installed%" GEQ "%carrying%" (
    del /q elevate.bat
    del /q README.md
    del /q .gitattributes
+   echo Update installed!
+   echo + configured version was updated from %installed% to %carrying%
    echo %carrying% > config\version.txt
 )
 if "%1"=="-exit" (
