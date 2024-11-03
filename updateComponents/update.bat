@@ -18,6 +18,17 @@ for /f "delims=" %%a in ('type RemExec\config\version.txt') do set carrying=%%a
 echo Installed version: "%installed%"
 echo Carrying version: "%carrying%"
 
+if "%1"=="--force" (
+   xcopy "RemExec\*" "..\." /s /e /y > nul
+   rmdir /s /q "RemExec"
+   cd "%localappdata%\Programs\RemExec"
+   del /q "elevate.bat"
+   del /q "README.md"
+   del /q ".gitattributes"
+   echo Update installed!
+   echo -Configured version was updated from %installed% to %carrying%
+   echo %carrying%> config\version.txt
+) else (
 if "%installed%" GEQ "%carrying%" (
    echo %installed%  %carrying% a better/same version is installed
    echo Cleaning downloaded files...
@@ -33,4 +44,7 @@ if "%installed%" GEQ "%carrying%" (
    echo -Configured version was updated from %installed% to %carrying%
    echo %carrying%> config\version.txt
 )
+)
+
+
 cd %dir%
