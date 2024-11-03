@@ -1,4 +1,5 @@
 @echo off
+set /p=%cd%
 REM safe / keep enable / disable
 
 if "%1"=="--enable" (
@@ -74,4 +75,4 @@ if "%1"=="--v" (
    type %localappdata%\Programs\RemExec\config\version.txt
 )
 
-cd ..
+cd %cd%
