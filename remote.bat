@@ -73,3 +73,5 @@ REM version
 if "%1"=="--v" (
    type %localappdata%\Programs\RemExec\config\version.txt
 )
+
+cd ..
