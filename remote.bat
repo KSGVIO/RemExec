@@ -48,15 +48,30 @@ REM Update
 
 if "%1"=="--update" (
    if "%2"=="auto" (
-   call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
-   call "%localappdata%\Programs\RemExec\updateComponents\update.bat"
+      if "%3"=="force" (
+         call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
+         call "%localappdata%\Programs\RemExec\updateComponents\update.bat --force"
+      ) else (
+         call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
+         call "%localappdata%\Programs\RemExec\updateComponents\update.bat"
+      )
    ) else (
-   echo This will download RemExec and install it! [~3 MB]
-   echo ==================================================
-   pause
-   echo Downloading Update...
-   call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
-   call "%localappdata%\Programs\RemExec\updateComponents\update.bat"
+
+      if "%3"=="force" (
+         echo This will download RemExec and install it! [~3 MB]
+         echo ==================================================
+         pause
+         echo Downloading Update...
+         call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
+         call "%localappdata%\Programs\RemExec\updateComponents\update.bat --force"
+      ) else (
+         echo This will download RemExec and install it! [~3 MB]
+         echo ==================================================
+         pause
+         echo Downloading Update...
+         call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
+         call "%localappdata%\Programs\RemExec\updateComponents\update.bat"
+      )
    )
 )
 
