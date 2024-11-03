@@ -53,7 +53,7 @@ echo ============================
  net session >nul 2>&1
     if %errorLevel% == 0 (
       cd %localappdata%\Programs\RemExec
-      move /Y "remote.bat" "C:\Windows\System32"
+      move /Y "remote.bat" "C:\Windows"
       start /min create.bat
       del /q elevate.bat
       del /q README.md

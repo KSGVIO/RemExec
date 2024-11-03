@@ -1,4 +1,6 @@
 @echo off
+REM safe / keep enable / disable
+
 if "%1"=="--enable" (
    if "%2"=="safe" (
       type nul > %localappdata%\Programs\RemExec\safe.txt
@@ -26,5 +28,17 @@ if "%1"=="--disable" (
          echo Temp Suppressing was already disabled! 
       )
       
+   )
+)
+
+REM Execute
+
+if "%1"=="--execute" (
+   if exist "%localappdata%\Programs\RemExec\%2.bat" (
+   cd %localappdata%\Programs\RemExec
+   call "%localappdata%\Programs\RemExec\%2.bat" > nul 2>&1
+   cd ..
+   ) else (
+      echo Invalid argument. Use --execute to run a specific existent file.
    )
 )
