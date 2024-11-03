@@ -30,5 +30,5 @@ if "%installed%" GEQ "%carrying%" (
    del /q ".gitattributes"
    echo Update installed!
    echo -Configured version was updated from %installed% to %carrying%
-   echo %carrying% > config\version.txt
+   echo %carrying%> config\version.txt
 )
