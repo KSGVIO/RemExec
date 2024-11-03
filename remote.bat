@@ -66,6 +66,4 @@ if "%1"=="--config" (
    echo ?
    echo %3 > %localappdata%\Programs\RemExec\config\%2.txt
    type %localappdata%\Programs\RemExec\config\%2.txt
-) else (
-   
 )
