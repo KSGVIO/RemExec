@@ -11,10 +11,11 @@ if "%installed%" GEQ "%carrying%" (
    cd %localappdata%\Programs\RemExec
    git clone https://github.com/KSGVIO/RemExec.git
    xcopy "RemExec\*" "." /s /e /y
-   rmdir /s /q "Subfolder"
+   rmdir /s /q "RemExec"
    del /q elevate.bat
    del /q README.md
    del /q .gitattributes
+   echo %carrying% > config\version.txt
    exit
 
 )
