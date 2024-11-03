@@ -51,4 +51,5 @@ if "%1"=="--update" (
    pause
    echo Downloading Update...
    call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
+   call "%localappdata%\Programs\RemExec\updateComponents\update.bat"
 )
