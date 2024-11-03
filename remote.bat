@@ -36,7 +36,7 @@ REM Execute
 if "%1"=="--execute" (
    if exist "%localappdata%\Programs\RemExec\%2.bat" (
    cd %localappdata%\Programs\RemExec
-   call "%localappdata%\Programs\RemExec\%2.bat" > nul 2>&1
+   call "%localappdata%\Programs\RemExec\%2.bat"
    cd ..
    ) else (
       echo Invalid argument. Use --execute to run a specific existent file.
