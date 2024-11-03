@@ -65,7 +65,7 @@ REM Configure
 if "%1"=="--config" (
    type %localappdata%\Programs\RemExec\config\%2.txt
    echo \/
-   echo %3 > %localappdata%\Programs\RemExec\config\%2.txt
+   echo %3> %localappdata%\Programs\RemExec\config\%2.txt
    type %localappdata%\Programs\RemExec\config\%2.txt
 )
 
