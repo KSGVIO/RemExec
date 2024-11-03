@@ -1,4 +1,5 @@
 @echo off
+set "dir=%cd%"
 cd "%localappdata%\Programs\RemExec\updateComponents"
 
 if not exist "..\config\version.txt" (
@@ -32,3 +33,4 @@ if "%installed%" GEQ "%carrying%" (
    echo -Configured version was updated from %installed% to %carrying%
    echo %carrying%> config\version.txt
 )
+cd %dir%

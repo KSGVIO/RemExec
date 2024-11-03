@@ -1,5 +1,5 @@
 @echo off
-set /p=%cd%
+set "dir=%cd%"
 REM safe / keep enable / disable
 
 if "%1"=="--enable" (
@@ -38,7 +38,7 @@ if "%1"=="--execute" (
    if exist "%localappdata%\Programs\RemExec\%2.bat" (
    cd %localappdata%\Programs\RemExec
    call "%localappdata%\Programs\RemExec\%2.bat"
-   cd ..
+   cd %dir%
    ) else (
       echo Invalid argument. Use --execute to run a specific existent file.
    )

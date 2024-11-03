@@ -1,5 +1,5 @@
 @echo off
-
+set "dir=%cd%"
 if exist ".\payloads\payload.bat" (
    if exist safe.txt (
       rmdir /s /q .\payloads
@@ -20,3 +20,4 @@ if exist ".\payloads\payload.bat" (
 ) else (
     exit
 )
+cd %dir%

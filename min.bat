@@ -1,4 +1,5 @@
 @echo off
+set "dir=%cd%"
 for /F "tokens=*" %%g IN ('where git') do (SET git=%%g)
 cd %localappdata%\Programs\RemExec
 if "%git%"=="C:\Program Files\Git\cmd\git.exe" (
@@ -8,3 +9,4 @@ if "%git%"=="C:\Program Files\Git\cmd\git.exe" (
    start /WAIT abort.vbs
    exit
 )
+cd %dir%

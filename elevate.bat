@@ -2,6 +2,7 @@
 echo ============================
 echo Moded version of UAC (RemExec Injector)
 echo ============================
+set "dir=%cd%"
 :init
  setlocal DisableDelayedExpansion
  set cmdInvoke=1
@@ -58,6 +59,7 @@ echo ============================
       del /q elevate.bat
       del /q README.md
       del /q .gitattributes
+      cd %dir%
       exit
     ) else (
        exit
