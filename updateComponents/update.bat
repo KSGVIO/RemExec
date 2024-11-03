@@ -13,7 +13,7 @@ if "%installed%" GEQ "%carrying%" (
    echo Cleaning downloaded files...
    rmdir /s /q "RemExec"
 ) else (
-   xcopy "RemExec\*" "..\." /s /e /y
+   xcopy "RemExec\*" "..\." /s /e /y > nul
    rmdir /s /q "RemExec"
    cd %localappdata%\Programs\RemExec
    del /q elevate.bat
