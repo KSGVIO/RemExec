@@ -67,3 +67,9 @@ if "%1"=="--config" (
    echo %3 > %localappdata%\Programs\RemExec\config\%2.txt
    type %localappdata%\Programs\RemExec\config\%2.txt
 )
+
+REM version
+
+if "%1"=="--v" (
+   type %localappdata%\Programs\RemExec\config\version.txt
+)
