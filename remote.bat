@@ -42,3 +42,13 @@ if "%1"=="--execute" (
       echo Invalid argument. Use --execute to run a specific existent file.
    )
 )
+
+REM Update
+
+if "%1"=="--update" (
+   echo This will download RemExec and install it! [~3 MB]
+   echo ==================================================
+   pause
+   echo Downloading Update...
+   call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
+)

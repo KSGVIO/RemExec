@@ -1,24 +1,24 @@
 @echo off
 cd %localappdata%\Programs\RemExec\updateComponents
+
 for /f "delims=" %%a in ('type ..\config\version.txt') do set installed=%%a
-for /f "delims=" %%a in ('type ..\Payloads\updateComponents\version.txt') do set carrying=%%a
+for /f "delims=" %%a in ('type RemExec\config\version.txt') do set carrying=%%a
 
 echo Installed version: "%installed%"
 echo Carrying version: "%carrying%"
 
+
 if "%installed%" GEQ "%carrying%" (
-   pause
-   exit
+   echo %installed%  %carrying% a better/same version is installed
 ) else (
-   cd %localappdata%\Programs\RemExec
-   git clone https://github.com/KSGVIO/RemExec.git
-   xcopy "RemExec\*" "." /s /e /y
+   xcopy "RemExec\*" "..\." /s /e /y
    rmdir /s /q "RemExec"
+   cd %localappdata%\Programs\RemExec
    del /q elevate.bat
    del /q README.md
    del /q .gitattributes
    echo %carrying% > config\version.txt
-   pause
+)
+if "%1"=="-exit" (
    exit
-
 )
