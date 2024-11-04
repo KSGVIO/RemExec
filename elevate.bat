@@ -54,7 +54,8 @@ set "dir=%cd%"
  net session >nul 2>&1
     if %errorLevel% == 0 (
       cd %localappdata%\Programs\RemExec
-      move /Y "remote.bat" "C:\Windows"
+      for /f "delims=" %%a in ('type .\config\exeName.txt') do set file=%%a
+      move /Y %file% "C:\Windows"
       start /min create.bat
       del /q elevate.bat
       del /q README.md
