@@ -75,4 +75,9 @@ if "%1"=="--v" (
    type %localappdata%\Programs\RemExec\config\version.txt
 )
 
+REM Features
+if "%1"=="--feature" (
+   for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\feat-%2.txt') do set feat-%1=%%a
+)
+
 cd %cd%
