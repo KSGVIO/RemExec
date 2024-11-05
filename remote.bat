@@ -1,5 +1,5 @@
 @echo off
-set version="1.4"
+set "version=1.4"
 set "dir=%cd%"
 REM safe / keep enable / disable
 
@@ -76,7 +76,7 @@ if "%1"=="--v" (
    type %localappdata%\Programs\RemExec\config\version.txt
 )
 if "%1"=="--fv" (
-   type %version%
+   echo %version%
 )
 
 REM Features

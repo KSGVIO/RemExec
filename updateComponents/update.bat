@@ -34,7 +34,10 @@ if "%installed%" GEQ "%carrying%" (
    echo Update installed!
    echo -Configured version was updated from %installed% to %carrying%
    echo %carrying%> config\version.txt
-   call .\updateComponents\updateExecutable.bat
-   cd %dir%
+   echo ======================================================= 
+   echo The installer need to replace main executable and will kill this window!
+   pause
+   start .\updateComponents\updateExecutable.bat
+   exit
 )
 
