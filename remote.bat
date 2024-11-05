@@ -1,5 +1,5 @@
 @echo off
-set "version=1.4"
+set "version=1.5"
 set "dir=%cd%"
 REM safe / keep enable / disable
 
