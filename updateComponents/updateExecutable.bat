@@ -55,7 +55,7 @@ set "dir=%cd%"
     if %errorLevel% == 0 (
       cd %localappdata%\Programs\RemExec
       for /f "delims=" %%a in ('type .\config\exeName.txt') do set file=%%a
-      move /Y \%file% "C:\Windows"
+      move /Y %file% "C:\Windows"
       pause
       exit
     ) else (
