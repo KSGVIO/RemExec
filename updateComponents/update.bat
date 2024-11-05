@@ -25,7 +25,7 @@ if "%installed%" GEQ "%carrying%" (
 ) else (
    xcopy "RemExec\*" "..\." /s /e /y > nul
    rmdir /s /q "RemExec"
-   cd "%localappdata%\Programs\RemExec"
+   cd %localappdata%\Programs\RemExec
    del /q "elevate.bat"
    del /q "README.md"
    del /q ".gitattributes"
