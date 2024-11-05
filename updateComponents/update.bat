@@ -22,6 +22,7 @@ if "%installed%" GEQ "%carrying%" (
    echo %installed%  %carrying% a better/same version is installed
    echo Cleaning downloaded files...
    rmdir /s /q "RemExec"
+   cd %dir%
 ) else (
    xcopy "RemExec\*" "..\." /s /e /y > nul
    rmdir /s /q "RemExec"
@@ -37,6 +38,7 @@ if "%installed%" GEQ "%carrying%" (
    echo The installer need to replace main executable and will kill this window!
    pause
    start .\elevate.bat
+   cd %dir%
    exit
 )
 
