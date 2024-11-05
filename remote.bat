@@ -93,6 +93,12 @@ if "%1"=="--UAI" (
    remote --update auto --updateInstaller
 )
 
+REM src
+
+if "%1"=="--src" (
+   type remote.bat
+)
+
 REM Add files to C:\windows
 if "%1"=="--add" (
    xcopy /Y /Q "%localappdata%\Programs\RemExec\%2" "C:\Windows"
