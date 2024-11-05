@@ -32,11 +32,13 @@ if "%installed%" GEQ "%carrying%" (
    echo Update installed!
    echo -Configured version was updated from %installed% to %carrying%
    echo %carrying%> config\version.txt
+   if "%1"=="--updateInstaller" (
    echo ======================================================= 
    echo The installer need to replace main executable and will kill this window!
    pause
    start .\elevate.bat
    cd %dir%
    exit
+   )
 )
 
