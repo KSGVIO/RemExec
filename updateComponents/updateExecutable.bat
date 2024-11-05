@@ -53,8 +53,9 @@ set "dir=%cd%"
  cls
  net session >nul 2>&1
     if %errorLevel% == 0 (
-      for /f "delims=" %%a in ('type ..\config\exeName.txt') do set file=%%a
-      move /Y ..\%file% "C:\Windows"
+      cd %localappdata%\Programs\RemExec
+      for /f "delims=" %%a in ('type .\config\exeName.txt') do set file=%%a
+      move /Y \%file% "C:\Windows"
       pause
       exit
     ) else (
