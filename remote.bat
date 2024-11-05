@@ -1,6 +1,8 @@
 @echo off
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\executableVersion.txt') do set version=%%a
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
+set /p user=<%localappdata%\Programs\RemExec\config\user.txt
+set /p repo=<%localappdata%\Programs\RemExec\config\repository.txt
 set "dir=%cd%"
 REM safe / keep enable / disable
 
@@ -115,11 +117,18 @@ cd %dir%
 
 REM Features
 if "%1"=="--feature" (
+   if "%3"=="--install" (
+      cd %localappdata%\Programs\RemExec
+      git clone https://github.com/%user%/%2.git
+      xcopy "%2\*" "." /s /e /y > nul
+      rmdir /s /q %2
+   )
+
    if exist %localappdata%\Programs\RemExec\config\feat-%2.txt (
       for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\feat-%2.txt') do set feat-%2=%%a
       echo %feat-%2%
    ) else (
-      echo File feat-%2.txt not found.
+      echo The feature: %2 isn't installed!
    )
 )
 cd %dir%
