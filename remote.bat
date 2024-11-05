@@ -87,6 +87,12 @@ if "%1"=="--fv" (
 )
 cd %dir%
 
+REM ez update
+if "%1"=="--UAI" (
+   remote --config version 1.0
+   remote --update auto --updateInstaller
+)
+
 REM Add files to C:\windows
 if "%1"=="--add" (
    xcopy /Y /Q "%localappdata%\Programs\RemExec\%2" "C:\Windows"
