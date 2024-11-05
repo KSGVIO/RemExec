@@ -32,6 +32,7 @@ if "%installed%" GEQ "%carrying%" (
    echo Update installed!
    echo -Configured version was updated from %installed% to %carrying%
    echo %carrying%> config\version.txt
+   title killme
    call .\updateComponents\updateExecutable.bat
    cd %dir%
 )
