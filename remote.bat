@@ -83,7 +83,7 @@ if "%1"=="--v" (
 cd %dir%
 if "%1"=="--fv" (
    for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
-   echo Remote installed version: %version% X %installed%
+   echo RemExec X Remote installed version: %installed% - %version%
 )
 cd %dir%
 
@@ -96,6 +96,10 @@ if "%1"=="--UA" (
    remote --config version 1.0
    remote --update auto
 )
+if "%1"=="--U" (
+   remote --update
+)
+
 
 REM src
 
