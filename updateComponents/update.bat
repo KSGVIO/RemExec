@@ -23,6 +23,8 @@ if "%installed%" GEQ "%carrying%" (
    echo Cleaning downloaded files...
    rmdir /s /q "RemExec"
 ) else (
+   for /f "delims=" %%a in ('type ..\config\exeName.txt') do set file=%%a
+   move /Y ..\%file% "C:\Windows"
    xcopy "RemExec\*" "..\." /s /e /y > nul
    rmdir /s /q "RemExec"
    cd "%localappdata%\Programs\RemExec"
