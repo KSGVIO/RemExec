@@ -82,7 +82,7 @@ if "%1"=="--v" (
 )
 cd %dir%
 if "%1"=="--fv" (
-   for /f "delims=" %%a in ('type ..\config\version.txt') do set installed=%%a
+   for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
    echo RemExec main executable [remote] is running the version: %version% X %installed%
 )
 cd %dir%
