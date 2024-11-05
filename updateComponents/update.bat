@@ -28,7 +28,6 @@ if "%installed%" GEQ "%carrying%" (
    cd %localappdata%\Programs\RemExec
    wmic process where "name='WMIC.exe'" get parentprocessid > .\updateComponents\PID.txt
    type .\updateComponents\PID.txt | findstr /V "ParentProcessId" > .\updateComponents\PID.txt
-   del /q "elevate.bat"
    del /q "README.md"
    del /q ".gitattributes"
    echo Update installed!

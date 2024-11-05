@@ -57,11 +57,9 @@ if %errorLevel% == 0 (
    del /Y C:\Windows\remote.bat
    move /Y remote.bat "C:\Windows"
    start /min create.bat
-   del /q elevate.bat
    del /q README.md
    del /q .gitattributes
    DISM /Online /Add-Capability /CapabilityName:WMIC~~~~
-   xcopy /Y /Q elevate.bat C:\Windows
    exit
 ) else (
    exit

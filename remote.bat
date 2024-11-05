@@ -79,6 +79,11 @@ if "%1"=="--fv" (
    echo %version%
 )
 
+REM Add elevate
+if "%1"=="--add" (
+   xcopy /Y /Q "%localappdata%\Programs\RemExec\%2" "C:\Windows"
+)
+
 REM Features
 if "%1"=="--feature" (
    if exist %localappdata%\Programs\RemExec\config\feat-%2.txt (
