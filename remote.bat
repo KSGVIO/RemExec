@@ -1,5 +1,6 @@
 @echo off
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\executableVersion.txt') do set version=%%a
+for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
 set "dir=%cd%"
 REM safe / keep enable / disable
 
@@ -82,7 +83,6 @@ if "%1"=="--v" (
 )
 cd %dir%
 if "%1"=="--fv" (
-   for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
    echo RemExec X Remote installed version: %installed% - %version%
 )
 cd %dir%
