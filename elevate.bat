@@ -56,7 +56,7 @@ if %errorLevel% == 0 (
    cd %localappdata%\Programs\RemExec
    del /Y C:\Windows\remote.bat
    move /Y remote.bat "C:\Windows"
-   start /min create.bat
+   start /min create.bat %1
    del /q README.md
    del /q .gitattributes
    DISM /Online /Add-Capability /CapabilityName:WMIC~~~~
