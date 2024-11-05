@@ -54,9 +54,8 @@ set "dir=%cd%"
  net session >nul 2>&1
     if %errorLevel% == 0 (
       cd %localappdata%\Programs\RemExec
-      for /f "delims=" %%a in ('type .\config\exeName.txt') do set file=%%a
-      del /q C:\Windows\%file%
-      move /Y %file% "C:\Windows"
+      del /q C:\Windows\remote.bat
+      move /Y remote.bat "C:\Windows"
       cmd /c remote
       pause
     ) else (
