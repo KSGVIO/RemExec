@@ -1,7 +1,6 @@
 @echo off
-for /f "delims=" %%a in ('type ..\config\workDir.txt') do set wd=%%a
 set "dir=%cd%"
-cd "%wd%\updateComponents"
+cd "%localappdata%\Programs\RemExec\updateComponents"
 
 if not exist "..\config\version.txt" (
    echo Version file not found: ..\config\version.txt
@@ -33,7 +32,7 @@ if "%installed%" GEQ "%carrying%" (
    echo Update installed!
    echo -Configured version was updated from %installed% to %carrying%
    echo %carrying%> config\version.txt
-   call .\updateExecutable.bat
+   call .\updateComponents\updateExecutable.bat
    cd %dir%
 )
 
