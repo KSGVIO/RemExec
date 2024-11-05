@@ -13,6 +13,7 @@ if "%1"=="--enable" (
       echo Temp Suppressing succesfully enabled!
    )
 )
+cd %dir%
 if "%1"=="--disable" (
    if "%2"=="safe" (
       if exist "%localappdata%\Programs\RemExec\safe.txt" (
@@ -32,6 +33,7 @@ if "%1"=="--disable" (
       
    )
 )
+cd %dir%
 
 REM Execute
 
@@ -44,6 +46,7 @@ if "%1"=="--execute" (
       echo Invalid argument. Use --execute to run a specific existent file.
    )
 )
+cd %dir%
 
 REM Update
 
@@ -60,6 +63,7 @@ if "%1"=="--update" (
    call "%localappdata%\Programs\RemExec\updateComponents\update.bat"
    )
 )
+cd %dir%
 
 REM Configure
 
@@ -69,20 +73,24 @@ if "%1"=="--config" (
    echo %3> %localappdata%\Programs\RemExec\config\%2.txt
    type %localappdata%\Programs\RemExec\config\%2.txt
 )
+cd %dir%
 
 REM version
 
 if "%1"=="--v" (
    type %localappdata%\Programs\RemExec\config\version.txt
 )
+cd %dir%
 if "%1"=="--fv" (
    echo %version%
 )
+cd %dir%
 
 REM Add elevate
 if "%1"=="--add" (
    xcopy /Y /Q "%localappdata%\Programs\RemExec\%2" "C:\Windows"
 )
+cd %dir%
 
 REM Features
 if "%1"=="--feature" (
@@ -93,6 +101,4 @@ if "%1"=="--feature" (
       echo File feat-%2.txt not found.
    )
 )
-
-
-cd %cd%
+cd %dir%
