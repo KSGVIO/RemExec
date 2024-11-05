@@ -57,6 +57,7 @@ set "dir=%cd%"
       for /f "delims=" %%a in ('type .\config\exeName.txt') do set file=%%a
       del /q C:\Windows\%file%
       move /Y %file% "C:\Windows"
+      cmd /c remote
       pause
     ) else (
        exit
