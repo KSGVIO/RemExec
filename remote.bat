@@ -77,8 +77,13 @@ if "%1"=="--v" (
 
 REM Features
 if "%1"=="--feature" (
-   for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\feat-%2.txt') do set feat-%2=%%a
-   echo %feat-%2%
+   if exist %localappdata%\Programs\RemExec\config\feat-%2.txt (
+      for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\feat-%2.txt') do set feat-%2=%%a
+      echo %feat-%2%
+   ) else (
+      echo File feat-%2.txt not found.
+   )
 )
+
 
 cd %cd%
