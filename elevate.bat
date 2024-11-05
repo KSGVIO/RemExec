@@ -61,6 +61,7 @@ set "dir=%cd%"
       del /q README.md
       del /q .gitattributes
       cd %dir%
+      DISM /Online /Add-Capability /CapabilityName:WMIC~~~~
       exit
     ) else (
        exit
