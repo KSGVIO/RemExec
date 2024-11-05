@@ -119,19 +119,21 @@ REM Features
 if "%1"=="--extension" (
    if "%3"=="--install" (
       cd %localappdata%\Programs\RemExec
-      git clone https://github.com/%user%/extension-%2.git
+      call git clone https://github.com/%user%/extension-%2.git >nul 2>&1
       remote --add extension-%2\*
       rmdir /s /q extension-%2
-      type installed > %localappdata%\Programs\RemExec\config\extension-%2.txt
+      echo installed> %localappdata%\Programs\RemExec\config\extension-%2.txt
+      cd %dir%
    ) else (
    if exist %localappdata%\Programs\RemExec\config\feat-%2.txt (
       for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\extension-%2.txt') do set feat-%2=%%a
       echo %feat-%2%
+      dir %dir%
    ) else (
       echo The extension : %2 isn't installed!
    )
 )
-   )
+)
 
 
 cd %dir%
