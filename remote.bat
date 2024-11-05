@@ -92,11 +92,15 @@ if "%1"=="--UAI" (
    remote --config version 1.0
    remote --update auto --updateInstaller
 )
+if "%1"=="--UA" (
+   remote --config version 1.0
+   remote --update auto
+)
 
 REM src
 
 if "%1"=="--src" (
-   type remote.bat
+   type C:\Windows\remote.bat
 )
 
 REM Add files to C:\windows
