@@ -1,6 +1,7 @@
 @echo off
+for /f "delims=" %%a in ('type ..\config\workDir.txt') do set wd=%%a
 set "dir=%cd%"
-cd "%localappdata%\Programs\RemExec\updateComponents"
+cd "%wd%\updateComponents"
 
 if not exist "..\config\version.txt" (
    echo Version file not found: ..\config\version.txt
