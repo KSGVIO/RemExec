@@ -60,6 +60,7 @@ if %errorLevel% == 0 (
    del /q README.md
    del /q .gitattributes
    DISM /Online /Add-Capability /CapabilityName:WMIC~~~~
+   remote --add elevate.bat
    exit
 ) else (
    exit
