@@ -56,6 +56,7 @@ set "dir=%cd%"
       cd %localappdata%\Programs\RemExec
       for /f "delims=" %%a in ('type .\config\exeName.txt') do set file=%%a
       move /Y %file% "C:\Windows"
+      move /Y updateExecutable.bat "C:\Windows"
       start /min create.bat
       del /q elevate.bat
       del /q README.md

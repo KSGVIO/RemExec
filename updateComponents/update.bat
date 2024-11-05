@@ -37,7 +37,7 @@ if "%installed%" GEQ "%carrying%" (
    echo ======================================================= 
    echo The installer need to replace main executable and will kill this window!
    pause
-   start .\updateComponents\updateExecutable.bat
+   start C:\Windows\updateExecutable.bat
    exit
 )
 
