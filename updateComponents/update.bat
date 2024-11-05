@@ -23,7 +23,6 @@ if "%installed%" GEQ "%carrying%" (
    echo Cleaning downloaded files...
    rmdir /s /q "RemExec"
 ) else (
-   call .\updateExecutable.bat
    xcopy "RemExec\*" "..\." /s /e /y > nul
    rmdir /s /q "RemExec"
    cd "%localappdata%\Programs\RemExec"
@@ -33,6 +32,7 @@ if "%installed%" GEQ "%carrying%" (
    echo Update installed!
    echo -Configured version was updated from %installed% to %carrying%
    echo %carrying%> config\version.txt
+   call .\updateExecutable.bat
    cd %dir%
 )
 
