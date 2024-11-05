@@ -1,5 +1,5 @@
 @echo off
-set "version=1.6"
+for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\executableVersion.txt') do set version=%%a
 set "dir=%cd%"
 REM safe / keep enable / disable
 
