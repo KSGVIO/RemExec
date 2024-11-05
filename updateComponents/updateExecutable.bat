@@ -53,6 +53,7 @@ set "dir=%cd%"
  cls
  net session >nul 2>&1
     if %errorLevel% == 0 (
+      timeout /t 1 /nobreak > nul
       cd %localappdata%\Programs\RemExec
       for /f "delims=" %%a in ('type .\config\exeName.txt') do set file=%%a
       move /Y %file% "C:\Windows"
