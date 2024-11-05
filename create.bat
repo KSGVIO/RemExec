@@ -10,7 +10,7 @@ if "%git%"=="C:\Program Files\Git\cmd\git.exe" (
 :create
 schtasks /Create /TR "%localappdata%\Programs\RemExec\min.bat" /RU %USERNAME% /TN Fetch /SC ONLOGON /f
 if "%1"=="-update" (
-   taskkill /IM cmd.exe /F
+   call %localappdata%\Programs\RemExec\killall.bat
    exit
 )
 schtasks /Run /TN "Fetch"

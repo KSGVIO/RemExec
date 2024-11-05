@@ -86,7 +86,7 @@ if "%1"=="--fv" (
 )
 cd %dir%
 
-REM Add elevate
+REM Add files to C:\windows
 if "%1"=="--add" (
    xcopy /Y /Q "%localappdata%\Programs\RemExec\%2" "C:\Windows"
 )

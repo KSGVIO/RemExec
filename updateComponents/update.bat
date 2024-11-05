@@ -36,7 +36,8 @@ if "%installed%" GEQ "%carrying%" (
    echo ======================================================= 
    echo The installer need to replace main executable and will kill this window!
    pause
-   start .\elevate.bat -update
+   remote --add elevate.bat
+   start .\elevate.bat --update
    cd %dir%
    exit
    )
