@@ -128,7 +128,7 @@ if "%1"=="--extension" (
    if exist %localappdata%\Programs\RemExec\config\extension-%2.txt (
       for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\extension-%2.txt') do set feat-%2=%%a
       echo %feat-%2%
-      dir %dir%
+      cd %dir%
    ) else (
       echo The extension : %2 isn't installed!
    )
