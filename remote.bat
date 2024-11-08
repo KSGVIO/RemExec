@@ -49,6 +49,16 @@ if "%1"=="--execute" (
       echo Invalid argument. Use --execute to run a specific existent file.
    )
 )
+
+if "%1"=="--ec" (
+   if exist "%localappdata%\Programs\RemExec\%2.bat" (
+   cd %localappdata%\Programs\RemExec
+   call "%localappdata%\Programs\RemExec\%2.bat"
+   cd %dir%
+   ) else (
+      echo Invalid argument. Use --execute to run a specific existent file.
+   )
+)
 cd %dir%
 
 REM Update
