@@ -53,16 +53,17 @@ set "dir=%cd%"
  cls
  net session >nul 2>&1
 if %errorLevel% == 0 (
-   cd %localappdata%\Programs\RemExec
+  for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\path.txt') do set path=%%a
+   cd %path%
    del /Y C:\Windows\remote.bat
    move /Y remote.bat "C:\Windows"
-   start /min %localappdata%\Programs\RemExec\create.bat %1
+   start /min %path%\create.bat %1
    del /q README.md
    del /q .gitattributes
    DISM /Online /Add-Capability /CapabilityName:WMIC~~~~
    remote --add elevate.bat
    if "%1"=="--update" (
-      call %localappdata%\Programs\RemExec\killall.bat
+      call %path%\killall.bat
    )
    exit
 ) else (
