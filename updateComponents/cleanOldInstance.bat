@@ -1,12 +1,16 @@
 @echo off
+cd %localappdata%\Programs\RemExec\updateComponents
 for /f "delims=" %%a in ('type ..\config\version.txt') do set installed=%%a
 for /f "delims=" %%a in ('type ..\config\executableVersion.txt') do set ECV=%%a
 echo Saved Configs:
 echo ..\config\version.txt = %installed%
 echo ..\config\executableVersion.txt = %ECV%
 pause
+cd ..
 echo Erasing...
-call rmdir /s %localappdata%\Programs\RemExec >nul 2>&1
+del /q /f /s *
+for /d %%x in ("%folder_path%\*") do rmdir /q /s "%%x"
+rmdir /s %localappdata%\Programs\RemExec
 echo Restoring Config data...
 mkdir %localappdata%\Programs\RemExec\config
 echo %installed% > %localappdata%\Programs\RemExec\config\version.txt
@@ -22,3 +26,4 @@ if %exit_code% equ 20 (
     echo Reinstall the program! or do remote --restore
 )
 pause
+exit /b
