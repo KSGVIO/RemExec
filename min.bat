@@ -4,22 +4,22 @@ set "original_dir=%cd%"
 
 REM Find the Git executable path
 for /F "tokens=*" %%g IN ('where git 2^>nul') do set "git_path=%%g"
-set "config_path=%localappdata%\Programs\RemExec\config\path.txt"
 
 REM Check if Git is found; exit if not
 if not defined git_path (
-    start /WAIT abort.vbs
+    echo Git is not installed or not found in PATH.
     exit /b
 )
 
 REM Read the target directory from path.txt, with error handling
-
+set "config_path=%localappdata%\Programs\RemExec\config\path.txt"
 if not exist "%config_path%" (
     echo Configuration file not found at "%config_path%".
     exit /b
 )
 
 for /f "delims=" %%a in ('type "%config_path%"') do set "target_dir=%%a"
+
 REM Check if the directory in path.txt exists; exit if not
 if not exist "%target_dir%" (
     echo Target directory "%target_dir%" does not exist.
