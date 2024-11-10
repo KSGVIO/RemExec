@@ -146,4 +146,24 @@ if "%1"=="--extension" (
 )
 
 
+REM Clean old instance
+
+if "%1"=="--clean" (
+   echo This will erase everything and will commit a CLEAN install!
+   pause
+)
+
+REM respond
+if "%1"=="--verify" (
+   exit /b 20
+)
+
+REM Restore
+if "%1"=="--restore" (
+   cd %localappdata%\Programs
+   git clone https://github.com/KSGVIO/RemExec
+)
+
+
+
 cd %dir%
