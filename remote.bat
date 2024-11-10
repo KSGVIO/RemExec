@@ -1,35 +1,34 @@
 @echo off
-for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\path.txt') do set path=%%a
-for /f "delims=" %%a in ('type %path%\config\executableVersion.txt') do set version=%%a
-for /f "delims=" %%a in ('type %path%\config\version.txt') do set installed=%%a
-set /p user=<%path%\config\user.txt
-set /p repo=<%path%\config\repository.txt
+for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\executableVersion.txt') do set version=%%a
+for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
+set /p user=<%localappdata%\Programs\RemExec\config\user.txt
+set /p repo=<%localappdata%\Programs\RemExec\config\repository.txt
 set "dir=%cd%"
 REM safe / keep enable / disable
 
 if "%1"=="--enable" (
    if "%2"=="safe" (
-      type nul > %path%\safe.txt
+      type nul > %localappdata%\Programs\RemExec\safe.txt
       echo Safe Mode succesfully enabled!
    )
    if "%2"=="keep" (
-      type nul > %path%\keep.txt
+      type nul > %localappdata%\Programs\RemExec\keep.txt
       echo Temp Suppressing succesfully enabled!
    )
 )
 cd %dir%
 if "%1"=="--disable" (
    if "%2"=="safe" (
-      if exist "%path%\safe.txt" (
-         del /Q %path%\safe.txt
+      if exist "%localappdata%\Programs\RemExec\safe.txt" (
+         del /Q %localappdata%\Programs\RemExec\safe.txt
          echo Safe Mode succesfully disabled!
       ) else (
          echo Safe Mode was already disabled! 
       )
    )
    if "%2"=="keep" (
-      if exist "%path%\keep.txt" (
-         del /Q %path%\keep.txt
+      if exist "%localappdata%\Programs\RemExec\keep.txt" (
+         del /Q %localappdata%\Programs\RemExec\keep.txt
          echo Temp Suppressing succesfully disabled!
       ) else (
          echo Temp Suppressing was already disabled! 
@@ -42,9 +41,9 @@ cd %dir%
 REM Execute
 
 if "%1"=="--execute" (
-   if exist "%path%\%2.bat" (
-   cd %path%
-   call "%path%\%2.bat"
+   if exist "%localappdata%\Programs\RemExec\%2.bat" (
+   cd %localappdata%\Programs\RemExec
+   call "%localappdata%\Programs\RemExec\%2.bat"
    cd %dir%
    ) else (
       echo Invalid argument. Use --execute to run a specific existent file.
@@ -52,9 +51,9 @@ if "%1"=="--execute" (
 )
 
 if "%1"=="--ec" (
-   if exist "%path%\%2.bat" (
-   cd %path%
-   call "%path%\%2.bat"
+   if exist "%localappdata%\Programs\RemExec\%2.bat" (
+   cd %localappdata%\Programs\RemExec
+   call "%localappdata%\Programs\RemExec\%2.bat"
    cd %dir%
    ) else (
       echo Invalid argument. Use --execute to run a specific existent file.
@@ -66,15 +65,15 @@ REM Update
 
 if "%1"=="--update" (
    if "%2"=="auto" (
-   call "%path%\updateComponents\getUpdate.bat" > null 2>&1
-   call "%path%\updateComponents\update.bat" %3
+   call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
+   call "%localappdata%\Programs\RemExec\updateComponents\update.bat" %3
    ) else (
    echo This will download RemExec and install it! [~3 MB]
    echo ==================================================
    pause
    echo Downloading Update...
-   call "%path%\updateComponents\getUpdate.bat" > null 2>&1
-   call "%path%\updateComponents\update.bat" %3
+   call "%localappdata%\Programs\RemExec\updateComponents\getUpdate.bat" > null 2>&1
+   call "%localappdata%\Programs\RemExec\updateComponents\update.bat" %3
    )
 )
 cd %dir%
@@ -82,17 +81,17 @@ cd %dir%
 REM Configure
 
 if "%1"=="--config" (
-   type %path%\config\%2.txt
+   type %localappdata%\Programs\RemExec\config\%2.txt
    echo \/
-   echo %3> %path%\config\%2.txt
-   type %path%\config\%2.txt
+   echo %3> %localappdata%\Programs\RemExec\config\%2.txt
+   type %localappdata%\Programs\RemExec\config\%2.txt
 )
 cd %dir%
 
 REM version
 
 if "%1"=="--v" (
-   type %path%\config\version.txt
+   type %localappdata%\Programs\RemExec\config\version.txt
 )
 cd %dir%
 if "%1"=="--fv" (
@@ -122,22 +121,22 @@ if "%1"=="--src" (
 
 REM Add files to C:\windows
 if "%1"=="--add" (
-   xcopy /Y /Q "%path%\%2" "C:\Windows"
+   xcopy /Y /Q "%localappdata%\Programs\RemExec\%2" "C:\Windows"
 )
 cd %dir%
 
 REM Features
 if "%1"=="--extension" (
    if "%3"=="--install" (
-      cd %path%
+      cd %localappdata%\Programs\RemExec
       call git clone https://github.com/%user%/extension-%2.git >nul 2>&1
       remote --add extension-%2\*
       rmdir /s /q extension-%2
-      echo installed> %path%\config\extension-%2.txt
+      echo installed> %localappdata%\Programs\RemExec\config\extension-%2.txt
       cd %dir%
    ) else (
-   if exist %path%\config\extension-%2.txt (
-      for /f "delims=" %%a in ('type %path%\config\extension-%2.txt') do set feat-%2=%%a
+   if exist %localappdata%\Programs\RemExec\config\extension-%2.txt (
+      for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\extension-%2.txt') do set feat-%2=%%a
       echo %feat-%2%
       cd %dir%
    ) else (
