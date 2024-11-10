@@ -161,6 +161,7 @@ if "%1"=="--verify" (
 
 REM Restore
 if "%1"=="--restore" (
+   rmdir /s %localappdata%\Programs\RemExec
    cd %localappdata%\Programs
    git clone https://github.com/KSGVIO/RemExec
 )

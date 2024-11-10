@@ -8,9 +8,8 @@ echo ..\config\executableVersion.txt = %ECV%
 pause
 cd ..
 echo Erasing...
-del /q /f /s *
-for /d %%x in ("*") do rmdir /q /s "%%x"
-rmdir /s %localappdata%\Programs\RemExec
+call del /q /f /s * >nul 2>&1
+call for /d %%x in ("*") do rmdir /q /s "%%x" >nul 2>&1
 echo Restoring Config data...
 mkdir %localappdata%\Programs\RemExec\config
 echo %installed% > %localappdata%\Programs\RemExec\config\version.txt
