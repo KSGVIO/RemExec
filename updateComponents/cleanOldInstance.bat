@@ -9,7 +9,7 @@ pause
 cd ..
 echo Erasing...
 del /q /f /s *
-for /d %%x in ("%folder_path%\*") do rmdir /q /s "%%x"
+for /d %%x in ("*") do rmdir /q /s "%%x"
 rmdir /s %localappdata%\Programs\RemExec
 echo Restoring Config data...
 mkdir %localappdata%\Programs\RemExec\config
