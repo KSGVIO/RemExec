@@ -1,5 +1,6 @@
 @echo off
 cd %localappdata%\Programs\RemExec\updateComponents
+echo If anything goes wrong, make sure to do: remote --restore and then Y
 for /f "delims=" %%a in ('type ..\config\version.txt') do set installed=%%a
 for /f "delims=" %%a in ('type ..\config\executableVersion.txt') do set ECV=%%a
 echo Saved Configs:
