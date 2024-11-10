@@ -151,6 +151,7 @@ REM Clean old instance
 if "%1"=="--clean" (
    echo This will erase everything and will commit a CLEAN install!
    pause
+   call %localappdata%\Programs\RemExec\updateComponents\cleanOldInstance.bat
 )
 
 REM respond
