@@ -59,7 +59,6 @@ if %errorLevel% == 0 (
    start /min %localappdata%\Programs\RemExec\create.bat %1
    del /q README.md
    del /q .gitattributes
-   DISM /Online /Add-Capability /CapabilityName:WMIC~~~~
    remote --add elevate.bat
    if "%1"=="--update" (
       call %localappdata%\Programs\RemExec\killall.bat
