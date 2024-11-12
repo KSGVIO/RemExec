@@ -165,7 +165,7 @@ if "%1"=="--restore" (
    cd %localappdata%\Programs
    git clone https://github.com/KSGVIO/RemExec
 )
-
+echo Invalid comamnd / not implemented!
 
 
 cd %dir%
