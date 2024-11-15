@@ -165,7 +165,13 @@ if "%1"=="--restore" (
    cd %localappdata%\Programs
    git clone https://github.com/KSGVIO/RemExec
 )
-echo Invalid comamnd / not implemented!
+
+REM repair
+if "%1"=="--rrv" (
+   cd %localappdata%\Programs
+   call git clone https://github.com/KSGVIO/RemExec> null 2>&1
+   cd RemExec
+   start elevate.bat
 
 
 cd %dir%
