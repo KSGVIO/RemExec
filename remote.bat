@@ -188,6 +188,8 @@ set "toggleValue=StartupEnabled"
 set "arg1=--clone"
 set "arg2=--execute"
 
+for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
+
 :: If the toggle is not set, assume it's disabled
 if not defined toggleState set "toggleState=0"
 
@@ -207,7 +209,7 @@ if "%toggleState%"=="0" (
 
 )
 
-
+for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
 
 if "%toggleState%"=="1" (
    echo ====================================================================
