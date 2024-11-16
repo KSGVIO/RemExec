@@ -1,7 +1,7 @@
 @echo off
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\executableVersion.txt') do set version=%%a
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
-for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\isStandalone.txt') do set standalone=%%a
+REM for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\isStandalone.txt') do set standalone=%%a
 set /p user=<%localappdata%\Programs\RemExec\config\user.txt
 set /p repo=<%localappdata%\Programs\RemExec\config\repository.txt
 set "dir=%cd%"
@@ -181,8 +181,7 @@ REM Standalone
 if "%1"=="--standalone" (
    cd C:\Windows
    git clone https://github.com/KSGVIO/RemExec
-   set "text=1"
-   echo %text%> %localappdata%\Programs\RemExec\Config\isStandalone.txt
+   set "standalone=1"
 )
 
 
