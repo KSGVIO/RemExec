@@ -180,7 +180,7 @@ if "%1"=="--rrv" (
 REM Standalone
 if "%1"=="--standalone" (
    cd C:\Windows
-   admin.bat git clone https://github.com/KSGVIO/RemExec
+   git clone https://github.com/KSGVIO/RemExec
    echo 1> %localappdata%\Programs\RemExec\Config\isStandalone.txt
 )
 
