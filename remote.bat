@@ -215,4 +215,22 @@ if "%toggleState%"=="1" (
    echo ====================================================================
    echo Remote is running in Standalone Mode! Some functions might not work.
 )
+
+REM replace
+if "%1"=="--replace" (
+:: Specify the input and output file paths
+set "inputFile=%localappdata%\Programs\RemExec\remote.bat"
+set "outputFile=C:\Windows\remote.bat"
+
+:: Check if the input file exists
+if not exist "%inputFile%" (
+    echo Input file "%inputFile%" not found! Try remote --UA and retry this command.
+    pause
+    exit /b
+)
+
+:: Read the content from the input file and write it to the output file
+(for /f "delims=" %%A in (%inputFile%) do @echo %%A) > "%outputFile%"
+
+)
 cd %dir%
