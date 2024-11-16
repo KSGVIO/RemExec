@@ -8,11 +8,6 @@ set /p repo=<%localappdata%\Programs\RemExec\config\repository.txt
 set "dir=%cd%"
 REM safe / keep enable / disable
 
-
-if "%toggleState%"=="1" (
-   echo Remote is running in Standalone Mode! Some functions might not work.
-)
-
 if "%1"=="--enable" (
    if "%2"=="safe" (
       type nul > %localappdata%\Programs\RemExec\safe.txt
@@ -213,4 +208,9 @@ if "%toggleState%"=="0" (
 )
 
 
+
+if "%toggleState%"=="1" (
+   echo ====================================================================
+   echo Remote is running in Standalone Mode! Some functions might not work.
+)
 cd %dir%
