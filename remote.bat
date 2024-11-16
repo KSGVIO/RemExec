@@ -181,7 +181,8 @@ REM Standalone
 if "%1"=="--standalone" (
    cd C:\Windows
    git clone https://github.com/KSGVIO/RemExec
-   echo 1> %localappdata%\Programs\RemExec\Config\isStandalone.txt
+   set "text=1"
+   echo %text%> %localappdata%\Programs\RemExec\Config\isStandalone.txt
 )
 
 
