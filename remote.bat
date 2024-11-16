@@ -1,11 +1,14 @@
 @echo off
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\executableVersion.txt') do set version=%%a
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
+for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\isStandalone.txt') do set standalone=%%a
 set /p user=<%localappdata%\Programs\RemExec\config\user.txt
 set /p repo=<%localappdata%\Programs\RemExec\config\repository.txt
 set "dir=%cd%"
 REM safe / keep enable / disable
-
+if "%standalone%"=="1" (
+   echo RemExec is running in Standalone Mode! Some functions might not be available.
+)
 if "%1"=="--enable" (
    if "%2"=="safe" (
       type nul > %localappdata%\Programs\RemExec\safe.txt
@@ -172,6 +175,14 @@ if "%1"=="--rrv" (
    call git clone https://github.com/KSGVIO/RemExec> null 2>&1
    cd RemExec
    start elevate.bat
+)
+
+REM Standalone
+if "%1"=="--standalone" (
+   cd C:\Windows
+   admin.bat git clone https://github.com/KSGVIO/RemExec
+   echo 1> %localappdata%\Programs\RemExec\Config\isStandalone.txt
+)
 
 
 cd %dir%

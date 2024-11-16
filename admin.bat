@@ -53,18 +53,8 @@ set "dir=%cd%"
  cls
  net session >nul 2>&1
 if %errorLevel% == 0 (
-   cd %localappdata%\Programs\RemExec
-   del /Y C:\Windows\remote.bat
-   move /Y remote.bat "C:\Windows"
-   start /min %localappdata%\Programs\RemExec\create.bat %1
-   del /q README.md
-   del /q .gitattributes
-   remote --add elevate.bat
-   remote --add admin.bat
-   if "%1"=="--update" (
-      call %localappdata%\Programs\RemExec\killall.bat
-   )
-   exit
+    start %*
+    exit
 ) else (
    exit
 )
