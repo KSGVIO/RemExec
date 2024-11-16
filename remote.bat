@@ -2,13 +2,17 @@
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\executableVersion.txt') do set version=%%a
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
 REM for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\isStandalone.txt') do set standalone=%%a
+for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
 set /p user=<%localappdata%\Programs\RemExec\config\user.txt
 set /p repo=<%localappdata%\Programs\RemExec\config\repository.txt
 set "dir=%cd%"
 REM safe / keep enable / disable
-if "%standalone%"=="1" (
-   echo RemExec is running in Standalone Mode! Some functions might not be available.
+
+
+if "%toggleState%"=="1" (
+   echo Remote is running in Standalone Mode! Some functions might not work.
 )
+
 if "%1"=="--enable" (
    if "%2"=="safe" (
       type nul > %localappdata%\Programs\RemExec\safe.txt
@@ -188,9 +192,6 @@ set "toggleValue=StartupEnabled"
 :: Arguments to pass when enabling startup
 set "arg1=--clone"
 set "arg2=--execute"
-
-:: Get the current toggle state from the registry
-for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
 
 :: If the toggle is not set, assume it's disabled
 if not defined toggleState set "toggleState=0"
