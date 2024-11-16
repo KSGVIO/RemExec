@@ -179,8 +179,8 @@ if "%1"=="--rrv" (
 
 REM Standalone
 if "%1"=="--standalone" (
-   cd C:\Windows
-   git clone https://github.com/KSGVIO/RemExec
+REM   cd C:\Windows
+REM   git clone https://github.com/KSGVIO/RemExec
    set "standalone=1"
 )
 
