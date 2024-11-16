@@ -179,9 +179,36 @@ if "%1"=="--rrv" (
 
 REM Standalone
 if "%1"=="--standalone" (
-REM   cd C:\Windows
-REM   git clone https://github.com/KSGVIO/RemExec
-   set "standalone=1"
+:: Define the registry key and value names
+set "regKey=HKCU\Software\Microsoft\Windows\CurrentVersion\Run"
+set "valueName=RE-RM Standalone"
+set "toggleKey=HKCU\Software\MyBatchToggle"
+set "toggleValue=StartupEnabled"
+
+:: Arguments to pass when enabling startup
+set "arg1=--clone"
+set "arg2=--execute"
+
+:: Get the current toggle state from the registry
+for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
+
+:: If the toggle is not set, assume it's disabled
+if not defined toggleState set "toggleState=0"
+
+:: Check the toggle state
+if "%toggleState%"=="0" (
+    :: Enable startup
+    set "batchFile=%~f0"
+    reg add "%regKey%" /v "%valueName%" /t REG_SZ /d "\"%batchFile%\" %arg1% %arg2%" /f >nul
+    reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "1" /f >nul
+    echo Standalone Enabled!
+) else (
+    :: Disable startup
+    reg delete "%regKey%" /v "%valueName%" /f >nul
+    reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "0" /f >nul
+    echo Standalone disabled.
+)
+
 )
 
 
