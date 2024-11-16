@@ -208,7 +208,7 @@ if "%toggleState%"=="0" (
     reg delete "%regKey%" /v "%valueName%" /f >nul
     reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "0" /f >nul
     echo Standalone disabled.
-)
+)> null 2>&1
 
 )
 
