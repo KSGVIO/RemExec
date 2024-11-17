@@ -195,16 +195,16 @@ if not defined toggleState set "toggleState=0"
 
 :: Check the toggle state
 if "%toggleState%"=="0" (
-    :: Enable startup
-    set "batchFile=%~f0"
-    reg add "%regKey%" /v "%valueName%" /t REG_SZ /d "\"%batchFile%\" %arg1% %arg2%" /f >nul
-    reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "1" /f >nul
-    echo Standalone Enabled!
+   :: Enable startup
+   set "batchFile=%~f0"
+   reg add "%regKey%" /v "%valueName%" /t REG_SZ /d "\"%batchFile%\" %arg1% %arg2%" /f >nul
+   reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "1" /f >nul
+   echo Standalone Enabled!
 ) else (
-    :: Disable startup
-    reg delete "%regKey%" /v "%valueName%" /f >nul
-    reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "0" /f >nul
-    echo Standalone disabled.
+   :: Disable startup
+   reg delete "%regKey%" /v "%valueName%" /f >nul
+   reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "0" /f >nul
+   echo Standalone disabled.
 )> null 2>&1
 
 )
@@ -214,6 +214,7 @@ for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') 
 if "%toggleState%"=="1" (
    echo ====================================================================
    echo Remote is running in Standalone Mode! Some functions might not work.
+   echo ====================================================================
 )
 
 cd %dir%
