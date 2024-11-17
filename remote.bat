@@ -1,24 +1,49 @@
 @echo off
+REM Standalone
+if "%1"=="--standalone" (
+:: Define the registry key and value names
+set "regKey=HKCU\Software\Microsoft\Windows\CurrentVersion\Run"
+set "valueName=RE-RM Standalone"
+set "toggleKey=HKCU\Software\MyBatchToggle"
+set "toggleValue=StartupEnabled"
+
+:: Arguments to pass when enabling startup
+set "arg1=--clone"
+set "arg2=--execute"
+
+for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
+
+:: If the toggle is not set, assume it's disabled
+if not defined toggleState set "toggleState=0"
+
+:: Check the toggle state
+if "%toggleState%"=="0" (
+   :: Enable startup
+   set "batchFile=%~f0"
+   reg add "%regKey%" /v "%valueName%" /t REG_SZ /d "\"%batchFile%\" %arg1% %arg2%" /f >nul
+   reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "1" /f >nul
+) else (
+   :: Disable startup
+   reg delete "%regKey%" /v "%valueName%" /f >nul
+   reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "0" /f >nul
+)> null 2>&1
+
+)
+
+for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\executableVersion.txt') do set version=%%a
 for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\version.txt') do set installed=%%a
 REM for /f "delims=" %%a in ('type %localappdata%\Programs\RemExec\config\isStandalone.txt') do set standalone=%%a
-for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
 set /p user=<%localappdata%\Programs\RemExec\config\user.txt
 set /p repo=<%localappdata%\Programs\RemExec\config\repository.txt
 set "dir=%cd%"
 
 
-
-REM Configure
-
-if "%1"=="--config" (
-   type %localappdata%\Programs\RemExec\config\%2.txt
-   echo \/
-   echo %3> %localappdata%\Programs\RemExec\config\%2.txt
-   type %localappdata%\Programs\RemExec\config\%2.txt
+if "%toggleState%"=="1" (
+   echo ====================================================================
+   echo Remote is running in Standalone Mode! Some functions might not work.
+   echo ====================================================================
 )
-cd %dir%
-
 REM version
 
 if "%1"=="--v" (
@@ -31,10 +56,22 @@ if "%1"=="--fv" (
 cd %dir%
 
 if "%toggleState%"=="1" (
-   echo 0x007bt5k
+   echo 0x007BT5K
 ) else (
-REM safe / keep enable / disable
+REM BEGIN OF STANDALONE ==============================================================================================================================
 
+REM Configure
+
+if "%1"=="--config" (
+   type %localappdata%\Programs\RemExec\config\%2.txt
+   echo \/
+   echo %3> %localappdata%\Programs\RemExec\config\%2.txt
+   type %localappdata%\Programs\RemExec\config\%2.txt
+)
+cd %dir%
+
+
+REM safe / keep enable / disable
 if "%1"=="--enable" (
    if "%2"=="safe" (
       type nul > %localappdata%\Programs\RemExec\safe.txt
@@ -183,45 +220,6 @@ REM src
 
 if "%1"=="--src" (
    type C:\Windows\remote.bat
-)
-
-REM Standalone
-if "%1"=="--standalone" (
-:: Define the registry key and value names
-set "regKey=HKCU\Software\Microsoft\Windows\CurrentVersion\Run"
-set "valueName=RE-RM Standalone"
-set "toggleKey=HKCU\Software\MyBatchToggle"
-set "toggleValue=StartupEnabled"
-
-:: Arguments to pass when enabling startup
-set "arg1=--clone"
-set "arg2=--execute"
-
-for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
-
-:: If the toggle is not set, assume it's disabled
-if not defined toggleState set "toggleState=0"
-
-:: Check the toggle state
-if "%toggleState%"=="0" (
-   :: Enable startup
-   set "batchFile=%~f0"
-   reg add "%regKey%" /v "%valueName%" /t REG_SZ /d "\"%batchFile%\" %arg1% %arg2%" /f >nul
-   reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "1" /f >nul
-) else (
-   :: Disable startup
-   reg delete "%regKey%" /v "%valueName%" /f >nul
-   reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "0" /f >nul
-)> null 2>&1
-
-)
-
-for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') do set "toggleState=%%B"
-
-if "%toggleState%"=="1" (
-   echo ====================================================================
-   echo Remote is running in Standalone Mode! Some functions might not work.
-   echo ====================================================================
 )
 
 
