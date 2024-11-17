@@ -6,6 +6,33 @@ for /f "tokens=2*" %%A in ('reg query "%toggleKey%" /v "%toggleValue%" 2^>nul') 
 set /p user=<%localappdata%\Programs\RemExec\config\user.txt
 set /p repo=<%localappdata%\Programs\RemExec\config\repository.txt
 set "dir=%cd%"
+
+
+
+REM Configure
+
+if "%1"=="--config" (
+   type %localappdata%\Programs\RemExec\config\%2.txt
+   echo \/
+   echo %3> %localappdata%\Programs\RemExec\config\%2.txt
+   type %localappdata%\Programs\RemExec\config\%2.txt
+)
+cd %dir%
+
+REM version
+
+if "%1"=="--v" (
+   type %localappdata%\Programs\RemExec\config\version.txt
+)
+cd %dir%
+if "%1"=="--fv" (
+   echo RemExec X Remote installed version: %installed% - %version%
+)
+cd %dir%
+
+if "%toggleState%"=="1" (
+   echo 0x007bt5k
+) else (
 REM safe / keep enable / disable
 
 if "%1"=="--enable" (
@@ -80,27 +107,6 @@ if "%1"=="--update" (
 )
 cd %dir%
 
-REM Configure
-
-if "%1"=="--config" (
-   type %localappdata%\Programs\RemExec\config\%2.txt
-   echo \/
-   echo %3> %localappdata%\Programs\RemExec\config\%2.txt
-   type %localappdata%\Programs\RemExec\config\%2.txt
-)
-cd %dir%
-
-REM version
-
-if "%1"=="--v" (
-   type %localappdata%\Programs\RemExec\config\version.txt
-)
-cd %dir%
-if "%1"=="--fv" (
-   echo RemExec X Remote installed version: %installed% - %version%
-)
-cd %dir%
-
 REM ez update
 if "%1"=="--UAI" (
    remote --config version 1.0
@@ -112,13 +118,6 @@ if "%1"=="--UA" (
 )
 if "%1"=="--U" (
    remote --update
-)
-
-
-REM src
-
-if "%1"=="--src" (
-   type C:\Windows\remote.bat
 )
 
 REM Add files to C:\windows
@@ -156,6 +155,7 @@ if "%1"=="--clean" (
    call %localappdata%\Programs\RemExec\updateComponents\cleanOldInstance.bat
 )
 
+
 REM respond
 if "%1"=="--verify" (
    exit /b 20
@@ -174,6 +174,15 @@ if "%1"=="--rrv" (
    call git clone https://github.com/KSGVIO/RemExec> null 2>&1
    cd RemExec
    start elevate.bat
+)
+
+REM END OF STANDALONE =======================================================================================================================================================
+)
+
+REM src
+
+if "%1"=="--src" (
+   type C:\Windows\remote.bat
 )
 
 REM Standalone
@@ -199,12 +208,10 @@ if "%toggleState%"=="0" (
    set "batchFile=%~f0"
    reg add "%regKey%" /v "%valueName%" /t REG_SZ /d "\"%batchFile%\" %arg1% %arg2%" /f >nul
    reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "1" /f >nul
-   echo Standalone Enabled!
 ) else (
    :: Disable startup
    reg delete "%regKey%" /v "%valueName%" /f >nul
    reg add "%toggleKey%" /v "%toggleValue%" /t REG_SZ /d "0" /f >nul
-   echo Standalone disabled.
 )> null 2>&1
 
 )
@@ -215,6 +222,12 @@ if "%toggleState%"=="1" (
    echo ====================================================================
    echo Remote is running in Standalone Mode! Some functions might not work.
    echo ====================================================================
+)
+
+
+if "%1"=="--clone" (
+   cd %temp%
+   git clone https://github.com/%user%/
 )
 
 cd %dir%
