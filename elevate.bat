@@ -63,6 +63,7 @@ if %errorLevel% == 0 (
    remote --add admin.bat
    if "%1"=="--update" (
       call %localappdata%\Programs\RemExec\killall.bat
+      start cmd
    )
    exit
 ) else (
