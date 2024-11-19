@@ -4,7 +4,8 @@ REM Check for Compilers
 if not exist "C:\Cargo\compile.bat" (
    call "%localappdata%\Programs\RemExec\nocargo.vbs"
    exit /b
-) else if not exist "C:\SLN\compile.bat" (
+)
+if not exist "C:\SLN\compile.bat" (
    call "%localappdata%\Programs\RemExec\nosln.vbs"
    exit /b
 )
