@@ -212,24 +212,6 @@ if "%1"=="--rrv" (
    cd RemExec
    start elevate.bat
 )
-
-
-
-REM Compile And update processor
-if "%1"=="--compile" (
-   if "%2"=="--useCargo" (
-      set "compile=true"
-   ) else if "%2"=="--useSLN"(
-      set "compile=true"
-   )
-)
-if "%compile%"=="true" (
-   goto compile
-) else (
-   goto pass
-)
-
-:pass
 REM END OF STANDALONE =======================================================================================================================================================
 )
 
@@ -238,33 +220,6 @@ REM src
 if "%1"=="--src" (
    type C:\Windows\remote.bat
 )
-:end
-cd %dir%
-
-
-if "%compile%"=="true" (
-if "%compile%"=="true" (
-   set /p what=<%localappdata%\Programs\RemExec\config\toCompile.txt
-   if "%2"=="--useCargo" (
-      if exist "C:\Cargo\compile.bat" (
-      start C:\Cargo\compile.bat %*
-      ) else (
-         start %localappdata%\Programs\RemExec\nocargo.vbs
-      )
-   ) else (
-      if exist "C:\SLN\compile.bat" (
-         start %localappdata%\Programs\RemExec\nosln.vbs
-      ) else (
-      start C:\SLN\compileSLN.bat %*
-      )
-   )
-)
-) else (
-   echo > null
-)
-
-
-
 
 
 
@@ -272,3 +227,5 @@ if "%1"=="--clone" (
    cd %temp%
    git clone https://github.com/%user%/
 )
+
+cd %dir%
