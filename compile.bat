@@ -1,11 +1,11 @@
 @echo off
 
 REM Check for Compilers
-if not exist "C:\Cargo\compile.bat" (
+if not exist "C:\Cargo\" (
    call "%localappdata%\Programs\RemExec\nocargo.vbs"
    exit /b
 )
-if not exist "C:\SLN\compile.bat" (
+if not exist "C:\SLN\" (
    call "%localappdata%\Programs\RemExec\nosln.vbs"
    exit /b
 )
