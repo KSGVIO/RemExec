@@ -61,6 +61,7 @@ if %errorLevel% == 0 (
    del /q .gitattributes
    remote --add elevate.bat
    remote --add admin.bat
+   remote --add compile.bat
    if "%1"=="--update" (
       call %localappdata%\Programs\RemExec\killall.bat
    )
