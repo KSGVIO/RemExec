@@ -259,10 +259,7 @@ if "%compile%"=="true" (
       start C:\SLN\compileSLN.bat %*
       )
    )
-) else (
-   :end
 )
-
 
 
 
