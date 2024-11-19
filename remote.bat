@@ -238,12 +238,11 @@ REM src
 if "%1"=="--src" (
    type C:\Windows\remote.bat
 )
+:end
+cd %dir%
 
 
-if "%1"=="--clone" (
-   cd %temp%
-   git clone https://github.com/%user%/
-)
+if "%compile%"=="true" (
 if "%compile%"=="true" (
    set /p what=<%localappdata%\Programs\RemExec\config\toCompile.txt
    if "%2"=="--useCargo" (
@@ -260,8 +259,16 @@ if "%compile%"=="true" (
       )
    )
 )
+) else (
+   echo > null
+)
 
 
 
-cd %dir%
 
+
+
+if "%1"=="--clone" (
+   cd %temp%
+   git clone https://github.com/%user%/
+)
