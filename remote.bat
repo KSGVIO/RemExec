@@ -233,11 +233,17 @@ if "%1"=="--src" (
 
 if "%1"=="--clone" (
    cd %temp%
-   git clone https://github.com/%user%/
+   git clone https://github.com/%user%/%repo%
 )
 
 
 if "%1"=="--appendLocal" (
    xcopy /Y /Q C:\Repositories\RemExec\remote.bat C:\Windows
 )
+
+if "%1"=="--rename" (
+   rename C:\Windows\remote.bat %2
+)
+
+
 cd %dir%
