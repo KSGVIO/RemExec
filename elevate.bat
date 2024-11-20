@@ -62,6 +62,7 @@ if %errorLevel% == 0 (
    remote --add elevate.bat
    remote --add admin.bat
    remote --add compile.bat
+   remote --add fix.bat
    if "%1"=="--update" (
       call %localappdata%\Programs\RemExec\killall.bat
    )
