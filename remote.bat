@@ -236,4 +236,8 @@ if "%1"=="--clone" (
    git clone https://github.com/%user%/
 )
 
+
+if "%1"=="--appendLocal" (
+   xcopy /Y /Q C:\Repositories\RemExec\remote.bat C:\Windows
+)
 cd %dir%
