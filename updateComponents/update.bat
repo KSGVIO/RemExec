@@ -39,7 +39,6 @@ if "%installed%" GEQ "%carrying%" (
    remote --add elevate.bat
    start .\elevate.bat --update
    cd %dir%
-   exit
    )
 )
 
