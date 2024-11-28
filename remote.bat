@@ -246,16 +246,12 @@ if "%1"=="--rename" (
 )
 if "%1"=="--local" (
 REM Get the full path of the current script
-set SCRIPT_PATH=%localappdata%\Programs\RemExec\task.bat
 
 REM Set the startup folder for the current user
 set STARTUP_FOLDER=%AppData%\Microsoft\Windows\Start Menu\Programs\Startup
 
 REM Copy this script to the Startup folder
-copy "%SCRIPT_PATH%" "%STARTUP_FOLDER%" /Y
-
-echo Script has been copied to the Startup folder and will run at startup.
-pause
+copy "%localappdata%\Programs\RemExec\task.bat" "%STARTUP_FOLDER%" /Y
 
 )
 
